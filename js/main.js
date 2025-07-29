@@ -52,6 +52,30 @@ interactiveBg.addEventListener('mouseleave', () => {
     });
 });
 
+
+document.addEventListener('DOMContentLoaded', function() {
+    const serviceTabs = document.querySelectorAll('.service-tab');
+    const serviceContents = document.querySelectorAll('.service-content');
+
+    serviceTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            // Remove active class from all tabs and contents
+            serviceTabs.forEach(t => t.classList.remove('active'));
+            serviceContents.forEach(c => c.classList.remove('active'));
+
+            // Add active class to clicked tab
+            this.classList.add('active');
+
+            // Show corresponding content
+            const target = this.getAttribute('data-service');
+            const content = document.getElementById(target + '-content');
+            if(content) {
+                content.classList.add('active');
+            }
+        });
+    });
+});
+
 // Brain Particle Animation
 const brainParticles = document.getElementById('brain-particles');
 const particleCount = 30;
